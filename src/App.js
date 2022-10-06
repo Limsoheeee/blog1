@@ -20,8 +20,7 @@ function App() {
     copy[0] = "여자추천코트";
     setPostTitle(copy);
   };
-  const[inputData,setInputDate]=useState('');
-  console.log(setInputDate)
+  const[inputData,setInputData]=useState('');
   return (
     <div>
       <div className="App">
@@ -91,11 +90,11 @@ function App() {
             </div>
           );
         })}
-        <input type="text" onChange={(e)=>{setInputDate(e.target.value);}}/>
+        <input type="text" onChange={(e)=>{setInputData(e.target.value);}}/>
        
         <button onClick={()=>{
             let copy = [...postTitle]
-            copy.unshift(setInputDate); //인풋 입력한값 postTitle배열에 끼워넣기
+            copy.unshift(inputData); //인풋 입력한값 postTitle배열에 끼워넣기
             setPostTitle(copy)
         }}>글발행</button>
         {modal == true ? (
