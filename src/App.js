@@ -6,20 +6,18 @@ import { useState } from "react";
 
 function App() {
   const [postTitle, setPostTitle] = useState([
-    "남자코트추천",
-    "강남우동맛집",
-    "파이썬독학",
+    "안녕하세요",
   ]);
-  const [num, setNum] = useState([0, 0, 0]);
+  const [num, setNum] = useState([0,0,0]);
   const [modalTitle,setModalTitle] = useState(0);
 
   const [modal, setModal] = useState("false");
 
-  const arrange = () => {
-    const copy = [...postTitle];
-    copy[0] = "여자추천코트";
-    setPostTitle(copy);
-  };
+  // const arrange = () => {
+  //   const copy = [...postTitle];
+  //   copy[0] = ;
+  //   setPostTitle(copy);
+  // };
   const[inputData,setInputData]=useState('');
   return (
     <div>
@@ -72,6 +70,7 @@ function App() {
                 }}
               >
                 {postTitle[i]}
+                
                 <span
                   className="add-like"
                   onClick={(e) => {e.stopPropagation(); //이벤트 버블링 막아주기
@@ -83,10 +82,17 @@ function App() {
                   👍
                 </span>
                 {num[i]}
+                   {/* //여기에 왜 num[i]인지..copy[i]일거같은데 */}
+                <button onClick={(e)=>{e.stopPropagation();
+                let copy = [...postTitle];
+                copy.splice(i,1); //삭제해주는 메소드사용
+                setPostTitle(copy)
+                }}>삭제하기</button>
               </h4>
-              {/* //여기에 왜 num[i]인지..copy[i]일거같은데 */}
+           
 
               <p>10월 5일 발행</p>
+              
             </div>
           );
         })}
@@ -94,7 +100,7 @@ function App() {
        
         <button onClick={()=>{
             let copy = [...postTitle]
-            copy.unshift(inputData); //인풋 입력한값 postTitle배열에 끼워넣기
+            copy.unshift(inputData); //인풋 입력한값(셋인풋은 함수라 인풋데이타에 입력) postTitle배열에 끼워넣기
             setPostTitle(copy)
         }}>글발행</button>
         {modal == true ? (
@@ -110,7 +116,7 @@ const Modal = (props) => {
     <div className="modal">
       <h4>{props.postTitle[props.modalTitle]}</h4>
       <p>날짜</p>
-      <p>상세내용</p>
+      <p>상세내용</p>      
       {/* <button onClick={()=>{props.setPostTitle(arrange)}}>글수정</button> //이거 어떻게하지...*/}
     </div>
   );
